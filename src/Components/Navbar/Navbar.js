@@ -36,7 +36,7 @@ const Navbarr = () => {
             </Nav.Link>
 
             <Nav.Link as={Link} to="/login">
-              <Button variant="primary" size="sm">
+              <Button variant="outline-success" size="sm">
                 Login
               </Button>
             </Nav.Link>

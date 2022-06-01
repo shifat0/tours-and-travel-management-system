@@ -1,48 +1,51 @@
-import React, { useContext, useState } from "react";
-import Navbarr from "../Navbar/Navbar";
+import React, { useState, useContext } from "react";
 import { Form, Button } from "react-bootstrap";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { userContext } from "../../App";
 
-const Login = () => {
+const Admin = () => {
+  const [response, setResponse] = useState({});
   const [loggedInUser, setLoggedInUser] = useContext(userContext);
-  const [user, setUser] = useState({
+  const [admin, setAdmin] = useState({
     email: "",
     password: "",
   });
+
   const navigate = useNavigate();
-  const location = useLocation();
-  let { from } = location.state || { from: { pathname: "/" } };
+  let { from } = { from: { pathname: "/admin/users" } };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5000/api/v1/users/login", {
+    fetch("http://localhost:5000/api/v1/users/admin/login", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
-        email: user.email,
-        password: user.password,
+        email: admin.email,
+        password: admin.password,
       }),
     })
       .then((res) => res.json())
       .then((payload) => {
-        setLoggedInUser(payload);
+        setResponse(payload);
+        payload.isAdmin ? setLoggedInUser(payload) : null;
+        sessionStorage.setItem("token", JSON.stringify(payload.token));
         if (payload.token) return navigate(from, { replace: true });
       });
   };
 
   const handleBlur = (e) => {
-    const newUser = { ...user };
-    newUser[e.target.name] = e.target.value;
-    setUser(newUser);
+    const newAdmin = { ...admin };
+    newAdmin[e.target.name] = e.target.value;
+    setAdmin(newAdmin);
   };
 
   return (
-    <>
-      <Navbarr />
+    <div>
       <Form className="w-50 mt-5 m-auto text-center" onSubmit={handleSubmit}>
-        <h1>Login Form</h1>
+        <h1>Admin Login</h1>
         <Form.Floating className="mb-3 mt-3">
           <Form.Control
             id="floatingInputCustom"
@@ -61,30 +64,19 @@ const Login = () => {
             name="password"
             placeholder="Password"
             required
-            min="6"
-            max="16"
             onBlur={handleBlur}
           />
           <label htmlFor="floatingPasswordCustom">Password</label>
         </Form.Floating>
-        <p className="text-danger">{loggedInUser.message}</p>
-        <Button
-          className="mt-3"
-          type="submit"
-          size="lg"
-          variant="outline-primary"
-        >
+        {response.isAdmin ? null : (
+          <p className="text-danger">{response.message}</p>
+        )}
+        <Button className="mt-3" type="submit" size="lg">
           Login
         </Button>
-        <p className="mt-2">
-          Don't have an account?{" "}
-          <Link to="/signup">
-            <span>Signup</span>
-          </Link>
-        </p>
       </Form>
-    </>
+    </div>
   );
 };
 
-export default Login;
+export default Admin;

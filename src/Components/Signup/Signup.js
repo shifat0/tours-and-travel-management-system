@@ -189,7 +189,12 @@ const Signup = () => {
           </Form.Control.Feedback>
         </Form.Floating>
 
-        <Button className="mt-3" type="submit" size="lg">
+        <Button
+          className="mt-3"
+          type="submit"
+          size="lg"
+          variant="outline-primary"
+        >
           Signup
         </Button>
 

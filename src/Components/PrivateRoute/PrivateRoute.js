@@ -5,7 +5,7 @@ import { userContext } from "../../App";
 const PrivateRoute = () => {
   const [loggedInUser, setLoggedInUser] = useContext(userContext);
   const location = useLocation();
-  return loggedInUser.email ? (
+  return loggedInUser.token ? (
     <Outlet />
   ) : (
     <Navigate to="/login" state={{ from: location }} replace />
