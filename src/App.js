@@ -1,5 +1,10 @@
 import React, { createContext, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import Home from "./Components/Home/Home";
 import Hotels from "./Components/Hotels/Hotels";
 import Events from "./Components/Events/Events";
@@ -18,21 +23,35 @@ import AdminEvents from "./Components/Admin/AdminEvents/AdminEvents";
 import PostEvents from "./Components/Admin/AdminEvents/PostEvents";
 import AdminPrivateRoute from "./Components/Admin/AdminPrivateRoute/AdminPrivateRoute";
 import AdminEventsById from "./Components/Admin/AdminEvents/AdminEventsById";
+import Profile from "./Components/Profile/Profile";
+import EventsBooking from "./Components/Events/EventsBooking";
 
 export const userContext = createContext();
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
+  const token = sessionStorage.getItem("token");
   return (
     <userContext.Provider value={[loggedInUser, setLoggedInUser]}>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route
+            path="/admin"
+            element={token ? <Navigate to="/admin/users" /> : <Admin />}
+          />
           <Route path="/events" element={<Events />} />
           <Route path="/blogs" element={<Blogs />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/login"
+            element={token ? <Navigate to="/" /> : <Login />}
+          />
+          <Route
+            path="/signup"
+            element={token ? <Navigate to="/" /> : <Signup />}
+          />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/event-booking/:id" element={<EventsBooking />} />
           <Route path="/" element={<PrivateRoute />}>
             <Route path="hotels" element={<Hotels />} />
           </Route>

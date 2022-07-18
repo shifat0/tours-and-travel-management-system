@@ -28,6 +28,7 @@ const Login = () => {
       .then((res) => res.json())
       .then((payload) => {
         setLoggedInUser(payload);
+        if (payload.token) sessionStorage.setItem("token", payload.token);
         if (payload.token) return navigate(from, { replace: true });
       });
   };

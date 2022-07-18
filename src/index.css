@@ -22,7 +22,7 @@ code {
 }
 
 .card:hover {
-  transform: scale(95%);
+  transform: scale(99%);
   transition: 2s;
 }
 

@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Container, Navbar, Nav, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { userContext } from "../../App";
 import logo from "../../images/logo.png";
 
 const Navbarr = () => {
-  const [loggedInUser, setLoggedInUser] = useContext(userContext);
+  const token = sessionStorage.getItem("token");
   return (
     <Navbar collapseOnSelect bg="dark" variant="dark" expand="lg" sticky="top">
       <Container>
@@ -35,11 +34,17 @@ const Navbarr = () => {
               Blogs
             </Nav.Link>
 
-            <Nav.Link as={Link} to="/login">
-              <Button variant="outline-success" size="sm">
-                Login
-              </Button>
-            </Nav.Link>
+            {token ? (
+              <Nav.Link as={Link} to="/profile">
+                Profile
+              </Nav.Link>
+            ) : (
+              <Nav.Link as={Link} to="/login">
+                <Button variant="outline-success" size="sm">
+                  Login
+                </Button>
+              </Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

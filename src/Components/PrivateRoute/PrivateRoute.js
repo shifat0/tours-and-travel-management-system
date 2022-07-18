@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import { userContext } from "../../App";
 
 const PrivateRoute = () => {
-  const [loggedInUser, setLoggedInUser] = useContext(userContext);
+  const token = sessionStorage.getItem("token");
   const location = useLocation();
-  return loggedInUser.token ? (
+  return token ? (
     <Outlet />
   ) : (
     <Navigate to="/login" state={{ from: location }} replace />
