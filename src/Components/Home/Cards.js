@@ -21,10 +21,14 @@ const Cards = () => {
   return (
     <>
       <section className="mt-4 p-4 bg-secondary">
-        <h1 className="text-center">Upcoming Events</h1>
+        <h1 className="text-center text-white mb-3">Upcoming Events</h1>
         {events.slice(-2).map((event) => {
           return (
-            <Card className="m-3" key={event.id}>
+            <Card
+              className="m-auto mb-5"
+              key={event.id}
+              style={{ width: "25rem" }}
+            >
               <Card.Img variant="top" src={event.image} />
               <Card.Body>
                 <Card.Title>{event.eventName}</Card.Title>

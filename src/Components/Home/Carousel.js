@@ -10,8 +10,13 @@ const Carousell = () => {
       <Carousel.Item interval={1000}>
         <img className="d-block w-100 slider" src={sajek} alt="First slide" />
         <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <h3>Sajek Valley</h3>
+          <p>
+            Sajek Tripuri Valley is one of the most popular tourist spots in
+            Bangladesh situated among the hills of the Kasalong range of
+            mountains in Sajek union, Baghaichhari Upazila in Rangamati
+            District.
+          </p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={1000}>
@@ -21,8 +26,11 @@ const Carousell = () => {
           alt="Second slide"
         />
         <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h3>Bandarban</h3>
+          <p>
+            Bandarban Hill District is the most remote and least populated
+            district in Bangladesh.
+          </p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={1000}>
@@ -32,9 +40,11 @@ const Carousell = () => {
           alt="Third slide"
         />
         <Carousel.Caption>
-          <h3>Third slide label</h3>
+          <h3>Saintmartin</h3>
           <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            St. Martin is generally known as “Narikel Zinzira” in Bengali, means
+            'Coconut Island' and this is the only coral reef island in
+            Bangladesh.
           </p>
         </Carousel.Caption>
       </Carousel.Item>

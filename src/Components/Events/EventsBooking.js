@@ -5,6 +5,7 @@ function EventsBooking() {
   return (
     <>
       <Navbarr />
+      EventsBooking Under Contstruction
     </>
   );
 }
