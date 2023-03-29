@@ -5,7 +5,7 @@ import { userContext } from "../../App";
 
 const Admin = () => {
   const [response, setResponse] = useState({});
-  const [loggedInUser, setLoggedInUser] = useContext(userContext);
+  const [setLoggedInUser] = useContext(userContext);
   const [admin, setAdmin] = useState({
     email: "",
     password: "",
@@ -30,9 +30,9 @@ const Admin = () => {
       .then((res) => res.json())
       .then((payload) => {
         setResponse(payload);
-        payload.isAdmin ? setLoggedInUser(payload) : null;
         sessionStorage.setItem("token", JSON.stringify(payload.token));
         if (payload.token) return navigate(from, { replace: true });
+        return payload.isAdmin ? setLoggedInUser(payload) : null;
       });
   };
 

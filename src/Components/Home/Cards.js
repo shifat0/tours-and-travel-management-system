@@ -20,8 +20,8 @@ const Cards = () => {
 
   return (
     <>
-      <section className="mt-4 p-4 bg-secondary">
-        <h1 className="text-center text-white mb-3">Upcoming Events</h1>
+      <section className="mt-4 p-4">
+        <h1 className="text-center text-secondary mb-3">Upcoming Events</h1>
         {events.slice(-2).map((event) => {
           return (
             <Card
@@ -43,7 +43,7 @@ const Cards = () => {
                     Event Date: {event.startingDate} To {event.endDate}
                   </ListGroupItem>
                 </ListGroup>
-                <Card.Link as={Link} to="/event/booking">
+                <Card.Link as={Link} to={`/event-booking/${event.id}`}>
                   Book Now!
                 </Card.Link>
               </Card.Body>

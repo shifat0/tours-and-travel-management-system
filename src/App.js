@@ -25,6 +25,8 @@ import AdminPrivateRoute from "./Components/Admin/AdminPrivateRoute/AdminPrivate
 import AdminEventsById from "./Components/Admin/AdminEvents/AdminEventsById";
 import Profile from "./Components/Profile/Profile";
 import EventsBooking from "./Components/Events/EventsBooking";
+import Bookings from "./Components/Admin/Bookings/Bookings";
+import AdminDashboard from "./Components/Admin/AdminDashboard/AdminDashboard";
 
 export const userContext = createContext();
 
@@ -51,11 +53,13 @@ function App() {
             element={token ? <Navigate to="/" /> : <Signup />}
           />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/event-booking/:id" element={<EventsBooking />} />
+
           <Route path="/" element={<PrivateRoute />}>
             <Route path="hotels" element={<Hotels />} />
+            <Route path="event-booking/:id" element={<EventsBooking />} />
           </Route>
           <Route path="/admin" element={<AdminPrivateRoute />}>
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
             <Route path="/admin/users" element={<Users />} />
             <Route path="/admin/users/:id" element={<UsersById />} />
             <Route path="/admin/blogs" element={<AdminBlogs />} />
@@ -64,6 +68,7 @@ function App() {
             <Route path="/admin/events" element={<AdminEvents />} />
             <Route path="/admin/events/:id" element={<AdminEventsById />} />
             <Route path="/admin/events/post" element={<PostEvents />} />
+            <Route path="/admin/bookings" element={<Bookings />} />
           </Route>
           <Route path="*" element={<NoMatch />} />
         </Routes>

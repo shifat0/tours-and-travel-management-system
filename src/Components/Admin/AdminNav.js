@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   Nav,
   Navbar,
@@ -11,7 +11,8 @@ import {
 import { userContext } from "../../App";
 
 const AdminNav = () => {
-  const [loggedInUser, setLoggedInUser] = useContext(userContext);
+  const [setLoggedInUser] = useContext(userContext);
+  const location = useLocation();
   const handleClick = () => {
     sessionStorage.clear("token");
     setLoggedInUser({});
@@ -58,6 +59,9 @@ const AdminNav = () => {
               </NavDropdown>
               <Nav.Link as={Link} to="/admin/blogs">
                 Blogs
+              </Nav.Link>
+              <Nav.Link as={Link} to="/admin/bookings">
+                Bookings
               </Nav.Link>
               <Nav.Link as={Link} to="/admin">
                 <Button
